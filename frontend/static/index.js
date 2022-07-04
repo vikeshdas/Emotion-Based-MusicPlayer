@@ -7,6 +7,8 @@ var startbutton;
 let close_camera;
 var stream;
 
+let backend_ip="35.239.113.204";
+let backend_port="5000";
 
 class Readface {
     constructor() {
@@ -104,7 +106,7 @@ method  hit the backend flask API with list of frames for emotion detection
 function makerequest(frame)
 {
     var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", 'http://127.0.0.1:8000/camera', true);
+        xmlHttp.open("POST", "http://" + backend_ip + ":" + backend_port + "/camera", true);
         xmlHttp.onprogress = function () {
         }
         xmlHttp.onload = function () {

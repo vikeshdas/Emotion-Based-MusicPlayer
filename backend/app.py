@@ -14,7 +14,7 @@ import numpy
 import json
 
 app = Flask(__name__)
-md=read_frames()
+
 CORS(app)
 cors = CORS(app, resources={r"*": {"origins": "*"}})
 
@@ -34,6 +34,7 @@ def camera():
         Return:  
              song in bytes form
     """
+    md=read_frames()
     data = request.get_data()
     json_data=[]
     json_data = json.loads(data)
@@ -43,9 +44,9 @@ def camera():
     music=music.decode("utf-8")
     all_data={'music':music,'emotion':emotion}
     all_data = json.dumps(all_data, cls=NumpyArrayEncoder)
-    print("returning to front end")
+
     return all_data
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 8000)
+    app.run(debug=True)
