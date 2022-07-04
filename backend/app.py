@@ -43,6 +43,7 @@ def camera():
     music=music.decode("utf-8")
     all_data={'music':music,'emotion':emotion}
     all_data = json.dumps(all_data, cls=NumpyArrayEncoder)
+    print("returning to front end")
     return all_data
 
 

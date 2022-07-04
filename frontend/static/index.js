@@ -1,4 +1,8 @@
 
+/**
+method of this mode open the web camera and record the video extract the frame of video and send list of frame to backend for emotion detection
+*/
+
 var startbutton;
 let close_camera;
 var stream;
@@ -6,8 +10,8 @@ var stream;
 
 class Readface {
     constructor() {
-        this.width = 320; // We will scale the photo width to this
-        this.height = 0; // This will be computed based on the input stream
+        this.width = 320; 
+        this.height = 0; 
         this.streaming = false;
         this.video = null;
         this.canvas = null;
@@ -20,7 +24,11 @@ class Readface {
 }
 
 
+/**
+method  start the web camera and desplay live vedeo on front end 
+*/
 function startup() { 
+
     obj.stopcmr=false;
     obj.width = 320;
     obj.height = 0; 
@@ -66,6 +74,10 @@ function startup() {
     }, false);
 
 }
+
+/**
+ * method extract the first 250 frames from live video and stores frames in a array
+*/
 function makeframe()
 {
     if(obj.stopcmr===true)
@@ -86,6 +98,9 @@ function makeframe()
     
 }
 
+/**
+method  hit the backend flask API with list of frames for emotion detection
+*/
 function makerequest(frame)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -111,6 +126,9 @@ function makerequest(frame)
 
 }
 
+/**
+method  extract one frame from live video 
+*/
 function takepicture() {
     var context = obj.canvas.getContext('2d');
     if (obj.width && obj.height) {
@@ -122,6 +140,10 @@ function takepicture() {
     } 
     return data;
 }
+
+/**
+ * method stop the camera if it is onn
+*/
 function stop_camera()
 {
     obj.tracks[0].stop();

@@ -1,24 +1,18 @@
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import os
+
 
 # Importing Deep Learning Libraries
 
-from tensorflow import keras
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.layers import Dense,Input,Dropout,GlobalAveragePooling2D,Flatten,Conv2D,BatchNormalization,Activation,MaxPooling2D
-from tensorflow.keras.models import Sequential,Model
-from tensorflow.keras.optimizers import RMSprop,SGD,Adam
+from tensorflow.keras.layers import Dense,Dropout,Flatten,Conv2D,BatchNormalization,Activation,MaxPooling2D
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.optimizers SGD,Adam
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau
 
 picture_size = 48
 folder_path = "images/"
-
 batch_size  = 128
 
+# ImageDataGenerator->generate new image from a image using some transformaion while model is training
 datagen_train  = ImageDataGenerator()
 datagen_val = ImageDataGenerator()
 
@@ -94,9 +88,11 @@ model.compile(optimizer=opt,loss='categorical_crossentropy', metrics=['accuracy'
 model.summary()
 
 
+#saving model
+checkpoint = ModelCheckpoint("./model.h5", monitor='val_acc', verbose=1,  
+                                        save_best_only=True, mode='max')
 
-checkpoint = ModelCheckpoint("./model.h5", monitor='val_acc', verbose=1, save_best_only=True, mode='max')
-
+#Stop training when a monitored metric has stopped improving.
 early_stopping = EarlyStopping(monitor='val_loss',
                           min_delta=0,
                           patience=3,
@@ -104,6 +100,7 @@ early_stopping = EarlyStopping(monitor='val_loss',
                           restore_best_weights=True
                           )
 
+#Reduce learning rate when a metric has stopped improving.
 reduce_learningrate = ReduceLROnPlateau(monitor='val_loss',
                               factor=0.2,
                               patience=3,
@@ -123,5 +120,4 @@ history = model.fit_generator(generator=train_set,
                                 epochs=epochs,
                                 validation_data = test_set,
                                 validation_steps = test_set.n//test_set.batch_size,callbacks=callbacks_list)
-
-model.save("model")                                
+                               
