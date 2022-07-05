@@ -68,6 +68,7 @@ class read_frames:
         maxfrequency = max(zip(frame_frequency.values(), frame_frequency.keys()))[1]
         music=random.choice(os.listdir('../dataset/songs/' + maxfrequency))
         music='../dataset/songs/'+maxfrequency+'/'+music
+        print(music)
         with open(music, 'rb') as fd:
             contents = fd.read()
 

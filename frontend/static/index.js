@@ -110,7 +110,8 @@ function makerequest(frame)
         xmlHttp.onprogress = function () {
         }
         xmlHttp.onload = function () {
-            var res = this.responseText;document.getElementsByClassName("reading_complete").innerHTML=''
+            console.log("responed");
+            var res = this.responseText;document.getElementsByClassName("reading_complete").innerHTML='';
             res=JSON.parse(res);
             var emotion=res.emotion;
             var myBuffer=res.music;
