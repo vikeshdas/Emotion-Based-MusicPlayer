@@ -26,6 +26,11 @@ class NumpyArrayEncoder(JSONEncoder):
             return obj.tolist()
         return JSONEncoder.default(self, obj)
 
+@app.route("/", methods=["POST","GET"])
+def home():
+    return "hello"
+
+
 @app.route("/camera", methods=["POST","GET"])
 def camera():
     """
