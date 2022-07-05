@@ -7,7 +7,7 @@ var startbutton;
 let close_camera;
 var stream;
 
-let backend_ip="35.239.113.204";
+let backend_ip="35.232.31.65";
 let backend_port="5000";
 
 class Readface {
