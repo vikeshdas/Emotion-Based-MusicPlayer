@@ -36,7 +36,6 @@ def camera():
         Return:  
              song in bytes form
     """
-    print("inside camera")
     md=read_frames()
     data = request.get_data()
     json_data=[]
@@ -47,7 +46,7 @@ def camera():
     music=music.decode("utf-8")
     all_data={'music':music,'emotion':emotion}
     all_data = json.dumps(all_data, cls=NumpyArrayEncoder)
-
+    print("inside camera")
     return all_data
 
 
