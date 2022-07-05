@@ -2,7 +2,7 @@
     Flask API to  detect the emotion and fetch music from the disc according to the emotion of the user 
 """
 import base64
-from flask import Flask
+from flask import Flask,render_template
 from flask_cors import CORS
 from mainClass import read_frames
 from flask import request, Flask,json
@@ -28,7 +28,7 @@ class NumpyArrayEncoder(JSONEncoder):
 
 @app.route("/", methods=["POST","GET"])
 def home():
-    return "hello"
+    return render_template('index.html')
 
 
 @app.route("/camera", methods=["POST","GET"])
