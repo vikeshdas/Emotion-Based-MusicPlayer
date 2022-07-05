@@ -59,10 +59,11 @@ class read_frames:
         frame_faces=np.array(frame_faces)
         prediction = self.classifier.predict(frame_faces)
         label=""
-
+        print("before prediction")
         for i in range(np.size(prediction, 0)):
             label=self.emotion_labels[prediction[i].argmax()]
             frame_frequency[label]+=1 
+        print("after prediction")    
          
         maxfrequency = max(zip(frame_frequency.values(), frame_frequency.keys()))[1]
         music=random.choice(os.listdir('../dataset/songs/' + maxfrequency))
