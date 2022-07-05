@@ -73,7 +73,7 @@ class read_frames:
         with open(music, 'rb') as fd:
             contents = fd.read()
 
-        return contents,maxfrequency   
+        return contents,10   
 
 
     
