@@ -28,7 +28,7 @@ class NumpyArrayEncoder(JSONEncoder):
 
 @app.route("/", methods=["POST","GET"])
 def home():
-    return render_template('index.html')
+    return "hello"
 
 
 @app.route("/camera", methods=["POST","GET"])
