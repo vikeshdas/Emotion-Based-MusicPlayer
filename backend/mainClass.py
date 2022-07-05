@@ -74,7 +74,7 @@ class read_frames:
         with open(music, 'rb') as fd:
             while time !=100:
                 contents = fd.read()
-
+        print(contents)        
         return contents,10   
 
 
