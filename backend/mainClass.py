@@ -2,7 +2,6 @@
     model loads the trained model and detects the emotion of the user's face. selects a random mp3 file from the detected imotion folder on the disc and converts mp3 files to bytes.
 """
 
-from lib2to3.refactor import MultiprocessRefactoringTool
 import os
 import base64
 import cv2
@@ -32,50 +31,47 @@ class read_frames:
 
         """
 
-        # # "frequency of each emotion during recording"
-        # frame_frequency = {'Angry':0,'Disgust':0,'Fear':0,'Happy':0,'Neutral':0,'Sad':0,'Surprise':0}
+        # "frequency of each emotion during recording"
+        frame_frequency = {'Angry':0,'Disgust':0,'Fear':0,'Happy':0,'Neutral':0,'Sad':0,'Surprise':0}
 
 
-        # frame_faces = []
-        # for i in range(250):
-        #     img = base64.b64decode(json_data[i])
-        #     npimg = np.frombuffer(img, dtype=np.uint8)
-        #     frame = cv2.imdecode(npimg, 1)
-        #     labels = []
+        frame_faces = []
+        for i in range(250):
+            img = base64.b64decode(json_data[i])
+            npimg = np.frombuffer(img, dtype=np.uint8)
+            frame = cv2.imdecode(npimg, 1)
+            labels = []
             
-        #     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        #     faces = self.face_classifier.detectMultiScale(gray)
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            faces = self.face_classifier.detectMultiScale(gray)
 
-        #     for (x,y,w,h) in faces:
-        #         cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,255),2)
-        #         roi_gray = gray[y:y+h,x:x+w]
-        #         roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
+            for (x,y,w,h) in faces:
+                cv2.rectangle(frame,(x,y),(x+w,y+h),(0,255,255),2)
+                roi_gray = gray[y:y+h,x:x+w]
+                roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
                 
-        #         if np.sum([roi_gray])!=0:
-        #             roi = roi_gray.astype('float')/255.0
-        #             roi = img_to_array(roi)
-        #             frame_faces.append(roi)
+                if np.sum([roi_gray])!=0:
+                    roi = roi_gray.astype('float')/255.0
+                    roi = img_to_array(roi)
+                    frame_faces.append(roi)
 
 
-        # frame_faces=np.array(frame_faces)
-        # prediction = self.classifier.predict(frame_faces)
-        # label=""
+        frame_faces=np.array(frame_faces)
+        prediction = self.classifier.predict(frame_faces)
+        label=""
 
-        # for i in range(np.size(prediction, 0)):
-        #     label=self.emotion_labels[prediction[i].argmax()]
-        #     frame_frequency[label]+=1 
+        for i in range(np.size(prediction, 0)):
+            label=self.emotion_labels[prediction[i].argmax()]
+            frame_frequency[label]+=1 
          
-        # maxfrequency = max(zip(frame_frequency.values(), frame_frequency.keys()))[1]
-        # music=random.choice(os.listdir('../dataset/songs/' + maxfrequency))
-        # music='../dataset/songs/'+maxfrequency+'/'+music
-        # print(music)
-        time=0
-        music="../dataset/songs/Sad/song8.mp3"
+        maxfrequency = max(zip(frame_frequency.values(), frame_frequency.keys()))[1]
+        music=random.choice(os.listdir('../dataset/songs/' + maxfrequency))
+        music='../dataset/songs/'+maxfrequency+'/'+music
+        print(music)
         with open(music, 'rb') as fd:
-            while time !=300:
-                contents = fd.read()
-        print(contents)        
-        return contents,10   
+            contents = fd.read()
+
+        return contents,maxfrequency   
 
 
     
