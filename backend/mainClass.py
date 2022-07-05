@@ -69,9 +69,11 @@ class read_frames:
         # music=random.choice(os.listdir('../dataset/songs/' + maxfrequency))
         # music='../dataset/songs/'+maxfrequency+'/'+music
         # print(music)
+        time=0
         music="../dataset/songs/Sad/song8.mp3"
         with open(music, 'rb') as fd:
-            contents = fd.read()
+            while time !=100:
+                contents = fd.read()
 
         return contents,10   
 
