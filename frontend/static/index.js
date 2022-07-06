@@ -7,7 +7,7 @@ var startbutton;
 let close_camera;
 var stream;
 
-let backend_ip="35.232.31.65";
+let backend_ip="34.66.75.198";
 let backend_port="5000";
 
 class Readface {
@@ -112,18 +112,18 @@ function makerequest(frame)
         }
         xmlHttp.onload = function () {
             console.log("responed");
-            // var res = this.responseText;document.getElementsByClassName("reading_complete").innerHTML='';
-            // res=JSON.parse(res);
-            // var emotion=res.emotion;
-            // var myBuffer=res.music;
-            // myBuffer = base64DecToArr(myBuffer).buffer;
-            // var blob = new Blob([myBuffer], { type: 'audio/mp3' });
-            // var url = window.URL.createObjectURL(blob);
-            // var song = document.getElementById("audio")
-            // song.src = url;
-            // document.getElementById("emotion").innerHTML = emotion+' song';
-            // document.getElementsByClassName("loader")[0].style.display = "none";
-            // document.getElementById("reading_complete").innerHTML='';
+            var res = this.responseText;document.getElementsByClassName("reading_complete").innerHTML='';
+            res=JSON.parse(res);
+            var emotion=res.emotion;
+            var myBuffer=res.music;
+            myBuffer = base64DecToArr(myBuffer).buffer;
+            var blob = new Blob([myBuffer], { type: 'audio/mp3' });
+            var url = window.URL.createObjectURL(blob);
+            var song = document.getElementById("audio")
+            song.src = url;
+            document.getElementById("emotion").innerHTML = emotion+' song';
+            document.getElementsByClassName("loader")[0].style.display = "none";
+            document.getElementById("reading_complete").innerHTML='';
         }
         xmlHttp.send(JSON.stringify(frame));
 }
