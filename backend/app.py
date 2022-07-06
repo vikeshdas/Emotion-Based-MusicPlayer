@@ -47,7 +47,7 @@ def camera():
     all_data={'music':music,'emotion':emotion}
     all_data = json.dumps(all_data, cls=NumpyArrayEncoder)
     print("inside camera")
-    return all_data
+    return "all_data"
 
 
 if __name__ == '__main__':
