@@ -7,11 +7,11 @@ var startbutton;
 let close_camera;
 var stream;
 
-// let backend_ip="34.66.75.198";
-// let backend_port="5000";
+let backend_ip="34.66.75.198";
+let backend_port="5000";
 
-let backend_ip="127.0.0.1"
-let backend_port="8000";
+// let backend_ip="127.0.0.1"
+// let backend_port="8000";
 
 class Readface {
     constructor() {
@@ -120,7 +120,7 @@ function makerequest(frame)
             console.log(typeof(res))
             document.getElementsByClassName("reading_complete").innerHTML='';
             // res=JSON.parse(res);
-            console.log(typeof(res))
+            // console.log(typeof(res))
             // var emotion=res.emotion;
             // var myBuffer=res.music;                                             
             myBuffer = base64DecToArr(res).buffer;
