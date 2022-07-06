@@ -31,7 +31,7 @@ class read_frames:
 
         """
 
-        # "frequency of each emotion during recording"
+        #frequency of each emotion during recording
         frame_frequency = {'Angry':0,'Disgust':0,'Fear':0,'Happy':0,'Neutral':0,'Sad':0,'Surprise':0}
 
 
@@ -70,6 +70,7 @@ class read_frames:
         music=random.choice(os.listdir('../dataset/songs/' + maxfrequency))
         music='../dataset/songs/'+maxfrequency+'/'+music
         print(music)
+
         with open(music, 'rb') as fd:
             contents = fd.read()
 

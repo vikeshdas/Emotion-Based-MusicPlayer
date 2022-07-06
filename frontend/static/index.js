@@ -10,6 +10,9 @@ var stream;
 let backend_ip="34.66.75.198";
 let backend_port="5000";
 
+// let backend_ip="127.0.0.1"
+// let backend_port="8000";
+
 class Readface {
     constructor() {
         this.width = 320; 
@@ -66,7 +69,7 @@ function startup() {
             if (isNaN(obj.height)) {
                 obj.height = obj.width / (4 / 3);
             }
-                         
+                          
             obj.video.setAttribute('width', obj.width);
             obj.video.setAttribute('height',obj.height);
             obj.canvas.setAttribute('width',obj.width);
@@ -80,13 +83,14 @@ function startup() {
 /**
  * method extract the first 250 frames from live video and stores frames in a array
 */
-function makeframe()
+function makeframe()                    
 {
     if(obj.stopcmr===true)
     {
         window.alert("camera is off");
         return;
     }
+    // startbutton.style.backgroundColor = "#B9EF0E";
     let frame=[];
     for(let i=0;i<250;i++)
     {
@@ -112,14 +116,18 @@ function makerequest(frame)
         }
         xmlHttp.onload = function () {
             console.log("responed");
-            var res = this.responseText;document.getElementsByClassName("reading_complete").innerHTML='';
+            var res = this.responseText;
+            console.log(typeof(res))
+            document.getElementsByClassName("reading_complete").innerHTML='';
             res=JSON.parse(res);
+            console.log(typeof(res))
             var emotion=res.emotion;
-            var myBuffer=res.music;
+            var myBuffer=res.music;                                             
+            // myBuffer = base64encode(myBuffer).buffer;
             myBuffer = base64DecToArr(myBuffer).buffer;
             var blob = new Blob([myBuffer], { type: 'audio/mp3' });
             var url = window.URL.createObjectURL(blob);
-            var song = document.getElementById("audio")
+            var song = document.getElementById("audio");
             song.src = url;
             document.getElementById("emotion").innerHTML = emotion+' song';
             document.getElementsByClassName("loader")[0].style.display = "none";
@@ -131,6 +139,7 @@ function makerequest(frame)
 /**
 method  extract one frame from live video 
 */
+
 function takepicture() {
     var context = obj.canvas.getContext('2d');
     if (obj.width && obj.height) {
@@ -164,11 +173,3 @@ window.addEventListener('load', (event) => {
     close_camera=document.getElementById("stop");
     close_camera.addEventListener('click',stop_camera)
 });
-
-
-
-
-
-
-
-
