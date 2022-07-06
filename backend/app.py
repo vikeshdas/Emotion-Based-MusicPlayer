@@ -43,7 +43,7 @@ def camera():
     json_data=np.array(json_data)
     music,emotion=md.emotion(json_data) 
     music=base64.b64encode(music)
-    # music=music.decode("utf-8")
+    music=music.decode("utf-8")
     all_data={'music':music,'emotion':emotion}
     all_data = json.dumps(all_data, cls=NumpyArrayEncoder)
     print("inside camera")
