@@ -7,7 +7,7 @@ var startbutton;
 let close_camera;
 var stream;
 
-let backend_ip="34.66.75.198";
+let backend_ip="35.232.181.87";
 let backend_port="5000";
 
 // let backend_ip="127.0.0.1"
