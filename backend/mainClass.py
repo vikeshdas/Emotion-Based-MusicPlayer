@@ -71,7 +71,7 @@ class read_frames:
         # music=random.choice(os.listdir('../dataset/songs/' + maxfrequency))
         # music='../dataset/songs/'+maxfrequency+'/'+music
         # print(music)
-        filename = "../dataset/songs/Disgusted/song5.mp3"
+        filename = "../dataset/songs/Disgusted/song2.mp3"
         print(filename)
 
         # with open(music, 'rb') as fd:

@@ -7,11 +7,11 @@ var startbutton;
 let close_camera;
 var stream;
 
-let backend_ip="35.232.181.87";
-let backend_port="5000";
+// let backend_ip="35.232.181.87";
+// let backend_port="5000";
 
-// let backend_ip="127.0.0.1"
-// let backend_port="8000";
+let backend_ip="127.0.0.1"
+let backend_port="8000";
 
 class Readface {
     constructor() {
@@ -116,22 +116,34 @@ function makerequest(frame)
         }
         xmlHttp.onload = function () {
             console.log("responed");
-            var res = this.responseText;
-            console.log(typeof(res))
-            document.getElementsByClassName("reading_complete").innerHTML='';
-            // res=JSON.parse(res);
-            // console.log(typeof(res))
-            // var emotion=res.emotion;
-            // var myBuffer=res.music;                                             
-            myBuffer = base64DecToArr(res).buffer;
-            // myBuffer = base64DecToArr(myBuffer).buffer;
-            var blob = new Blob([myBuffer], { type: 'audio/mp3' });
-            var url = window.URL.createObjectURL(blob);
+            var myBuffer = this.responseText;
+            console.log(myBuffer);
+            var audio = new Blob([myBuffer], { type: 'audio/mp3' });
+            console.log(audio);
+            var url = window.URL.createObjectURL(audio);
+            console.log(url);
+
             var song = document.getElementById("audio");
             song.src = url;
-            // document.getElementById("emotion").innerHTML = emotion+' song';
+
+        //     console.log(typeof(audio));
+        //    // console.log(typeof(res))
+        //     document.getElementsByClassName("reading_complete").innerHTML='';
+        //     // res=JSON.parse(res);
+        //     // console.log(typeof(res))
+        //     // var emotion=res.emotion;
+        //     // var myBuffer=res.music;                    
+        //     console.log(typeof(res));
+        //     console.log(res)                         
+        //     myBuffer = base64DecToArr(res).buffer;
+        //     // myBuffer = base64DecToArr(myBuffer).buffer;
+        //     var blob = new Blob([myBuffer], { type: 'audio/mp3' });
+        //     var url = window.URL.createObjectURL(blob);
+        //     var song = document.getElementById("audio");
+        //     song.src = url;
+            // // document.getElementById("emotion").innerHTML = emotion+' song';
             document.getElementsByClassName("loader")[0].style.display = "none";
-            document.getElementById("reading_complete").innerHTML='';
+            // document.getElementById("reading_complete").innerHTML='';
         }
         xmlHttp.send(JSON.stringify(frame));
 }
