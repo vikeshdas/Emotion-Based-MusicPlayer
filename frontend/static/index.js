@@ -7,11 +7,17 @@ var startbutton;
 let close_camera;
 var stream;
 
-let backend_ip="34.67.74.124";
-let backend_port="5000";
+// let backend_ip="34.67.74.124";
+// let backend_port="5000";
+Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+    faceapi.nets.faceExpressionNet.loadFromUri('/models')
+  ]);
 
-// let backend_ip="127.0.0.1"
-// let backend_port="8000";
+let backend_ip="127.0.0.1"
+let backend_port="8000";
 
 class Readface {
     constructor() {
