@@ -1,5 +1,5 @@
 body {
-  background-image: 'illustration.svg';
+  background-image: url("illustration.svg");
   width: 100%;
   height: 100%;
   display: flex;
