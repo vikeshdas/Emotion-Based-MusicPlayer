@@ -19,9 +19,9 @@ cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 
 @app.route("/select_music", methods=["POST","GET"])
-def camera():
+def random_music():
     """
-        flask api to  select music from emotion's and read bytes from files send back to front end 
+        flask api to  select music from emotion's and read bytes from files and send back to front-end 
         
         Return:  
              song in bytes form

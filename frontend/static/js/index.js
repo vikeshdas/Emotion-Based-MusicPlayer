@@ -28,7 +28,6 @@ class Readface {
     }
 }
 
-
 /**
 method  hit the backend flask API with emotion as a text detected from the front end using face-API
 */
@@ -48,7 +47,6 @@ function makerequest(emotion) {
   }
   xmlHttp.send(emotion);
 }
-
 
 /**
 get user media and start the web cab to record the facial expression of the user
