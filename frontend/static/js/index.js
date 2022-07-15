@@ -3,15 +3,12 @@
 method of this module detect the emotion of the user using web cam and send emotion to the back end for select music 
 */
 
-
-
 let backend_ip = "127.0.0.1";
 let backend_port = "8000";
 let obj;
 
 // let backend_ip="34.171.108.100";
 // let backend_port="5000";
-
 async function load_models() {
   obj = new Readface();
   let models = "http://127.0.0.1:5000/static/models/";
@@ -51,7 +48,6 @@ function makerequest(emotion) {
   }
   xmlHttp.send(emotion);
 }
-
 
 
 /**
