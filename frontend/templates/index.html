@@ -13,53 +13,56 @@
             href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 
         <link rel="stylesheet"
-            href="{{ url_for('static', filename='index.css') }}">
-        <script src="{{ url_for('static', filename='index.js') }}"></script>
-        <script src="{{ url_for('static', filename='b64decode.js') }}"></script>
-        <script src="{{ url_for('static', filename='face-api.min.js') }}"></script>
+            href="{{ url_for('static', filename='styles/index.css') }}">
+        <script src="{{ url_for('static', filename='js/face-api.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/b64decode.js') }}"></script>
+
 
     </head>
 
     <body>
 
-        <div class="row">
-            <div id="col1" class="col-md-4" id="col1">
-            </div>
-            <div id="col2" class="col-md-4" id="col1">
+        <body>
 
-                <div id="middle">
-                    <P id="para">Emotion Base Music Player</P>
-                    <p id="reading_complete"></p>
-                    <p id="emotion">
-                    <div class="loader">
-                        <div class="loading">
+            <div class="row">
+                <div id="col1" class="col-md-4" id="col1">
+                </div>
+                <div id="col2" class="col-md-4" id="col1">
+
+                    <div id="middle">
+                        <P id="para">Emotion Base Music Player</P>
+                        <p id="reading_complete"></p>
+                        <p id="emotion">
+                        <div class="loader">
+                            <div class="loading">
+                            </div>
                         </div>
                     </div>
-                </div>
-             
-                <div class="contentarea">
 
-                    <div class="camera">
-                        <video id="video">Video stream not available.</video>
+                    <div class="contentarea">
+
+                        <div class="camera">
+                            <video id="video" width="350" height="300" autoplay
+                                muted></video>
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <div><button id="startbutton">Start Face
+                                Reading</button>
+                        </div>
                     </div>
-                    <div><button id="startbutton">Start Face Reading</button>
+                    <div id="start_stop">
+                        <button id="stream">Start Camera</button>
+                        <button id="stop">Close Camera</button>
                     </div>
-                    <canvas id="canvas"></canvas>
+                    <div>
+
+                        <audio id="audio" controls autoplay>
+
+                        </audio>
+                    </div>
                 </div>
-                <div id="start_stop">
-                    <button id="stream">Start Camera</button>
-                    <button id="stop">Close Camera</button>
+                <div id="col4" class="col-md-4" id="col1">
                 </div>
-                <div>
-
-                    <audio id="audio" controls autoplay>
-
-                    </audio>
-                </div>
-            </div>
-            <div id="col4" class="col-md-4" id="col1">
-            </div>
-
-    </body>
-
-</html>
+        </body>
+         </html>

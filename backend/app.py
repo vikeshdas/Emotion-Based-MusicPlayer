@@ -1,6 +1,8 @@
 """
     Flask API to  detect the emotion and fetch music from the disc according to the emotion of the user 
 """
+import random
+import os
 import codecs
 import flask
 from curses import flash
@@ -39,26 +41,24 @@ def camera():
         Return:  
              song in bytes form
     """
-    md=read_frames()
-    data = request.get_data()
-    json_data=[]
-    json_data = json.loads(data)
-    json_data=np.array(json_data)
-    music, emotion = md.emotion(json_data) 
+    print("request made")
+    emotion =request.data
+    emotion=emotion.decode("utf-8")
+    print(type(emotion))
+    print(emotion);
+    music=random.choice(os.listdir('../dataset/songs/' + emotion))
+    music='../dataset/songs/'+emotion+'/'+music
+
+    with open(music, 'rb') as fd:
+        contents = fd.read()
+    music=contents
     music = base64.b64encode(music)
     headers = {
         "content_length" : len(music)
     }
     return flask.Response(music, headers=headers)
-    # print(type(music))
-    
-    # music=music.decode("utf-8")
-    # music=[str(x,'ascii', 'ignore') for x in music]
-    # all_data={'music':music,'emotion':emotion}
-    # all_data = json.dumps(all_data, cls=NumpyArrayEncoder)
-    # print("inside camera")
-    # return jsonify(music)
+
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port="8000")
