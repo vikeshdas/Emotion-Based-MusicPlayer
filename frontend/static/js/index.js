@@ -1,9 +1,8 @@
 
-// /**
-// method of this mode open the web camera and record the video extract the frame of video and send list of frame to backend for emotion detection
-// */
-// var model;
-// var predictions;
+/**
+method of this mode open the web camera and record the video extract the frame of video and send list of frame to backend for emotion detection
+*/
+
 var face_reading=null;
 let close_camera;
 let stream=null;
@@ -15,7 +14,7 @@ let cam=false;
 // let backend_ip = "127.0.0.1";
 // let backend_port = "8000";
 
-let backend_ip="34.67.74.124";
+let backend_ip="34.171.108.100";
 let backend_port="5000";
 
 async function load_models() {
@@ -56,18 +55,13 @@ function makerequest(emotion) {
         console.log("waiting...");
     }
     xmlHttp.onload = function () {
-        // var myBuffer = this.responseText;
         var myBuffer = base64DecToArr(this.response).buffer;
         var audio = new Blob([myBuffer], { type: 'audio/mp3' });
         console.log(audio);
         var url = window.URL.createObjectURL(audio);
         var song = document.getElementById("audio");
         song.src = url;
-
-        //     res=JSON.parse(res);                       
-        // myBuffer = base64DecToArr(res).buffer;
         document.getElementById("emotion").innerHTML = emotion+' song';
-        document.getElementsByClassName("loader")[0].style.display = "none";
     }
     xmlHttp.send(emotion);
 }
@@ -134,9 +128,7 @@ function detectemotion() {
   setTimeout(function( ) {
      clearInterval( myinterval );
      document.body.removeChild(canvas);
-     console.log(frequency_of_emotion);
      let max_frequency = Object.keys(frequency_of_emotion).reduce((i, j) => frequency_of_emotion[i] > frequency_of_emotion[j] ? i : j);
-     console.log("final emotion is ",max_frequency);
      makerequest(max_frequency);
      }, 5000);
 }
@@ -148,7 +140,6 @@ function stop_camera() {
       return;
     }
   cam=false;  
-  console.log("inside stop_caimera");
   tracks[0].stop();
 }
 

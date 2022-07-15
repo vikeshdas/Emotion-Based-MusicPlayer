@@ -3,20 +3,13 @@
 """
 import random
 import os
-import codecs
 import flask
-from curses import flash
-import mimetypes
-from flask import Flask,render_template
+from flask import Flask
 from flask_cors import CORS
-from mainClass import read_frames
-from flask import request, Flask,json,jsonify
+from flask import request, Flask
 import base64
-import numpy as np
 from flask_cors import CORS
-from json import JSONEncoder
-import numpy
-import json
+
 
 app = Flask(__name__)
 
@@ -25,27 +18,18 @@ cors = CORS(app, resources={r"*": {"origins": "*"}})
 
 
 
-class NumpyArrayEncoder(JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, numpy.ndarray):
-            return obj.tolist()
-        return JSONEncoder.default(self, obj)
-
 
 
 @app.route("/camera", methods=["POST","GET"])
 def camera():
     """
-        flask api to  detect the emotion of the face from the frames requested by front end and response with emotion text form ,music in bytes form
+        flask api to  select music form emotion's and read bytes from files send back to front end 
         
         Return:  
              song in bytes form
     """
-    print("request made")
     emotion =request.data
     emotion=emotion.decode("utf-8")
-    print(type(emotion))
-    print(emotion);
     music=random.choice(os.listdir('../dataset/songs/' + emotion))
     music='../dataset/songs/'+emotion+'/'+music
 
